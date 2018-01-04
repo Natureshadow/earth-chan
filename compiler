@@ -1,0 +1,55 @@
+#
+# Earth-Chan 0.5
+# Esoteric programming language by two autists 
+# Interpreter made in Python (compatible with versions 2 and 3)
+# Inspired by poop, by Eike Tim Jesinghaus, 2014
+#
+
+earth_signs = {}
+for i in range(0, 10):
+    earth_signs[i] = str(i)
+    
+for num, char in enumerate("abcdefghijklmnopqrstuvwxyz.,-!?+*<>#@$€§%&/()[]"):
+    earth_signs[num+10] = char
+
+try:
+    compatible_input = raw_input
+except:
+    compatible_input = input
+
+execute_file = compatible_input("File to exe-chan: ")
+
+a = ""
+for line in open(execute_file, 'r').readlines():
+    for char in line:
+        if char != "\n":
+            a = a + char
+        else:
+            a = a + " "
+code = a.split(" ")
+print("\n")
+
+n = 0
+s = ""
+for cmd in code:
+    if cmd == "pollute":
+        n += 1
+    elif cmd == "recycle":
+        n -= 1
+    elif cmd == "earth":
+        s = s + earth_signs[n]
+    elif cmd == "EARTH":
+        try:
+            s = s + earth_signs[n].upper()
+        except:
+            s = s + earth_signs[n]
+    elif cmd == "nuke":
+        s = ""
+        n = 0
+    elif cmd == "notflat":
+        print(s)
+
+
+print("\n\nDone.")
+compatible_input()
+exit(0)
