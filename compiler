@@ -5,12 +5,7 @@
 # Inspired by poop, by Eike Tim Jesinghaus, 2014
 #
 
-earth_signs = {}
-for i in range(0, 10):
-    earth_signs[i] = str(i)
-    
-for num, char in enumerate("abcdefghijklmnopqrstuvwxyz.,-!?+*<>#@$€§%&/()[]"):
-    earth_signs[num+10] = char
+earth_signs = "0123456789abcdefghijklmnopqrstuvwxyz.,-!?+*<>#@$€§%&/()[]"
 
 try:
     compatible_input = raw_input
@@ -19,14 +14,9 @@ except:
 
 execute_file = compatible_input("File to exe-chan: ")
 
-a = ""
-for line in open(execute_file, 'r').readlines():
-    for char in line:
-        if char != "\n":
-            a = a + char
-        else:
-            a = a + " "
-code = a.split(" ")
+with open(execute_file, 'r')as input_file:
+    code = input_file.read().split('\n')
+
 print("\n")
 
 n = 0
@@ -37,12 +27,12 @@ for cmd in code:
     elif cmd == "recycle":
         n -= 1
     elif cmd == "earth":
-        s = s + earth_signs[n]
+        s += earth_signs[n]
     elif cmd == "EARTH":
-        try:
-            s = s + earth_signs[n].upper()
-        except:
-            s = s + earth_signs[n]
+        if earth_signs[n].isalpha():
+            s += earth_signs[n].upper()
+        else:
+            s += earth_signs[n]
     elif cmd == "nuke":
         s = ""
         n = 0
